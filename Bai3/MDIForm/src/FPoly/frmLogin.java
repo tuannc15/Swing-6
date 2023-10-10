@@ -34,6 +34,7 @@ public class frmLogin extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setTitle("Login");
+        setName("ABC"); // NOI18N
 
         jButton1.setText("Close");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -100,7 +101,9 @@ public class frmLogin extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        
         this.setVisible(false);
+        dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed

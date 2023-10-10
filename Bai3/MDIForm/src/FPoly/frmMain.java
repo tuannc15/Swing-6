@@ -4,6 +4,9 @@
  */
 package FPoly;
 
+import java.awt.Component;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author nctuan
@@ -26,28 +29,29 @@ public class frmMain extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDesktopPane1 = new javax.swing.JDesktopPane();
+        deskTop = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         mnuLogin = new javax.swing.JMenuItem();
+        mnuLogout = new javax.swing.JMenuItem();
         mnuExit = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(600, 400));
 
-        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
-        jDesktopPane1.setLayout(jDesktopPane1Layout);
-        jDesktopPane1Layout.setHorizontalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout deskTopLayout = new javax.swing.GroupLayout(deskTop);
+        deskTop.setLayout(deskTopLayout);
+        deskTopLayout.setHorizontalGroup(
+            deskTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 600, Short.MAX_VALUE)
         );
-        jDesktopPane1Layout.setVerticalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        deskTopLayout.setVerticalGroup(
+            deskTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 377, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jDesktopPane1, java.awt.BorderLayout.CENTER);
+        getContentPane().add(deskTop, java.awt.BorderLayout.CENTER);
 
         jMenu1.setText("File");
 
@@ -58,6 +62,14 @@ public class frmMain extends javax.swing.JFrame {
             }
         });
         jMenu1.add(mnuLogin);
+
+        mnuLogout.setText("Logout");
+        mnuLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuLogoutActionPerformed(evt);
+            }
+        });
+        jMenu1.add(mnuLogout);
 
         mnuExit.setText("Exit");
         mnuExit.addActionListener(new java.awt.event.ActionListener() {
@@ -81,13 +93,32 @@ public class frmMain extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_mnuExitActionPerformed
-
+    frmLogin fLogin = new frmLogin();
+    
     private void mnuLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuLoginActionPerformed
         // TODO add your handling code here:
-        frmLogin frm= new frmLogin();
-        jDesktopPane1.add(frm);
-        frm.setVisible(true);
+        Component[] com=deskTop.getComponents();
+        for (Component component : com) {
+            JOptionPane.showMessageDialog(this, component.getName());
+        }
+        if (!CheckExistForm("ABC")) {
+            deskTop.add(fLogin);
+            fLogin.setVisible(true);
+        } else {
+            fLogin.setVisible(true);
+        }
+            
+        
+        
+        
     }//GEN-LAST:event_mnuLoginActionPerformed
+
+    private void mnuLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuLogoutActionPerformed
+        // TODO add your handling code here:
+        frmLogout fLogout = new frmLogout();
+        deskTop.add(fLogout);
+        fLogout.setVisible(true);
+    }//GEN-LAST:event_mnuLogoutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -125,11 +156,38 @@ public class frmMain extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JDesktopPane deskTop;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem mnuExit;
     private javax.swing.JMenuItem mnuLogin;
+    private javax.swing.JMenuItem mnuLogout;
     // End of variables declaration//GEN-END:variables
+
+    private boolean CheckExistForm(String abc) {
+        boolean check=false;
+        Component[] com=deskTop.getComponents();
+        for (Component component : com) {
+            //JOptionPane.showMessageDialog(this, component.getName());
+            if (!component.getName().equalsIgnoreCase(abc)) {
+                check=true;
+                break;
+            }
+
+        }  
+        return check;
+    }
+
+    private void ActiveChildForm(String abc) {
+        Component[] com=deskTop.getComponents();
+        for (Component component : com) {
+            //JOptionPane.showMessageDialog(this, component.getName());
+            if (!component.getName().equalsIgnoreCase(abc)) {
+                fLogin.setVisible(true);
+                break;
+            }
+
+        }  
+    }
 }
